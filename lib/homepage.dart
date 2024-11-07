@@ -161,9 +161,9 @@ class ApiService {
       final phoneResponse = await http
           .get(Uri.parse('https://dummyjson.com/products/search?q=phone'));
       final productsResponse =
-          await http.get(Uri.parse('https://dummyjson.com/products'));
-      final smartphoneResponse = await http.get(
-          Uri.parse('https://dummyjson.com/products/category/smartphones'));
+          await http.get(Uri.parse('https://dummyjson.com/products?limit=600'));
+      final smartphoneResponse = await http.get(Uri.parse(
+          'https://dummyjson.com/products/category/smartphones?limit=200'));
 
       if (phoneResponse.statusCode == 200 &&
           productsResponse.statusCode == 200 &&
@@ -355,7 +355,7 @@ class _Producthome extends State<Producthome> {
     String title = product['title'] ?? 'अनजान उत्पाद';
     String imageUrl = product['thumbnail'] ?? 'default_image_url';
     double price = product['price'] ?? 0.0;
-    double rating = product['rating'] ?? 0.0;
+    dynamic rating = product['rating'] ?? 0.0;
 
     return GestureDetector(
       onTap: () {
